@@ -1,5 +1,5 @@
 {
-  "name": "@ds",
+  "name": "ds-frontend",
   "version": "3.0.1-beta",
   "bin": {
     "ds-init": "bin/index.js"
