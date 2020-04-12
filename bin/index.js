@@ -16,14 +16,6 @@ if(!semver.satisfies(process.version, requiredVersion)) {
   process.exit(1)
 }
 
-function wrapCommand(fn) {
-  return (...args) =>
-    fn(...args).catch((err) => {
-      console.error(chalk.red(err.stack))
-      process.exitCode = 1
-    })
-}
-
 program
   .version(require('../package.json').version)
   .usage('<command> [options]')
@@ -32,7 +24,7 @@ program
   .command('init [siteName] [folderName] [rootDir]')
   .description('Initialize website')
   .action((siteName, folderName, rootDir = '.') => {
-    wrapCommand(init)(path.resolve(rootDir), siteName, folderName)
+    init(path.resolve(rootDir), siteName, folderName)
   })
 
 program.arguments('<command>').action((cmd) => {
