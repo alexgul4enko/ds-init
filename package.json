@@ -1,6 +1,6 @@
 {
   "name": "ds-init",
-  "version": "3.0.3-beta",
+  "version": "3.0.4-beta",
   "bin": {
     "ds-init": "bin/index.js"
   },
@@ -46,8 +46,8 @@
     "node": ">=12.6.1"
   },
   "scripts": {
-    "build": "babel src --out-dir lib",
-    "clean": "rimraf lib",
+    "build": "babel src --out-dir lib && babel _bin --out-dir bin",
+    "clean": "rimraf lib && rimraf bin",
     "prepublishOnly": "yarn clean && yarn build"
   },
   "repository": {
