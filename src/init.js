@@ -202,9 +202,9 @@ function init(
 
       console.log()
       const cdpath =
-      path.join(process.cwd(), configs.name) === dest
-        ? configs.name
-        : path.relative(process.cwd(), configs.name)
+      path.join(process.cwd(), configs.folderName) === dest
+        ? configs.folderName
+        : path.relative(process.cwd(), configs.folderName)
 
       console.log()
       console.log(`Success! Created ${chalk.cyan(cdpath)}`)
