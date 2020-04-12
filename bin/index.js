@@ -8,7 +8,7 @@
 // function init() {
 //   console.log('init');
 // }
-console.log(process.version);
+// console.log(process.version);
 // if(!semver.satisfies(process.version, requiredVersion)) {
 //   console.log(chalk.red('\nMinimum node version not met :)') + chalk.yellow('\nYou are using Node '.concat(process.version, ', Requirement: Node ').concat(requiredVersion, '.\n')));
 //   process.exit(1);

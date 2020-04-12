@@ -1,6 +1,6 @@
 {
   "name": "ds-init",
-  "version": "3.0.11-beta",
+  "version": "3.0.12-beta",
   "bin": {
     "ds-init": "bin/index.js"
   },
@@ -49,15 +49,5 @@
     "build": "babel src --out-dir lib",
     "clean": "rimraf lib",
     "prepublishOnly": "yarn clean && yarn build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alexgul4enko/ds-init.git"
-  },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alexgul4enko/ds-init/issues"
-  },
-  "homepage": "https://github.com/alexgul4enko/ds-init#readme",
-  "description": ""
+  }
 }
