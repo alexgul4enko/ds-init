@@ -1,7 +1,6 @@
 {
   "name": "ds-init",
   "version": "3.0.0-beta",
-  "description": "",
   "bin": {
     "ds-init": "bin/index.js"
   },
@@ -22,8 +21,10 @@
     "shelljs": "^0.8.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.3.3",
     "@babel/plugin-proposal-throw-expressions": "^7.2.0",
+    "@babel/preset-env": "^7.9.5",
     "@babel/preset-flow": "^7.0.0",
     "@babel/register": "^7.0.0",
     "babel-eslint": "^10.0.1",
@@ -43,5 +44,20 @@
   },
   "engines": {
     "node": ">=12.6.1"
-  }
+  },
+  "scripts": {
+    "build": "babel src --out-dir lib",
+    "clean": "rimraf lib",
+    "prepublishOnly": "yarn clean && yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexgul4enko/ds-init.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexgul4enko/ds-init/issues"
+  },
+  "homepage": "https://github.com/alexgul4enko/ds-init#readme",
+  "description": ""
 }
