@@ -1,11 +1,3 @@
-require('core-js/modules/es.symbol');
-
-require('core-js/modules/es.symbol.description');
-
-require('core-js/modules/es.array.concat');
-
-require('core-js/modules/es.array.slice');
-
 var chalk = require('chalk');
 
 var semver = require('semver');

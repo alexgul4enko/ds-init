@@ -1,6 +1,6 @@
 {
   "name": "ds-init",
-  "version": "3.0.13-beta",
+  "version": "3.0.14-beta",
   "bin": {
     "ds-init": "bin/index.js"
   },
@@ -11,6 +11,7 @@
   "dependencies": {
     "chalk": "^4.0.0",
     "commander": "^5.0.0",
+    "core-js": "3",
     "envfile": "^5.0.0",
     "fs-extra": "^9.0.0",
     "inquirer": "^7.1.0",
@@ -29,7 +30,6 @@
     "@babel/register": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
-    "core-js": "3",
     "eslint": "^4.11.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.8.0",
