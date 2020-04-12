@@ -3,7 +3,7 @@ const chalk = require('chalk')
 const semver = require('semver')
 const path = require('path')
 const program = require('commander')
-const init = require('../lib/init')
+const init = require('../src/init')
 const requiredVersion = require('../package.json').engines.node
 
 if(!semver.satisfies(process.version, requiredVersion)) {
