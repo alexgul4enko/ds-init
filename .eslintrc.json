@@ -45,10 +45,7 @@
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 0, "maxBOF": 0 }],
     "no-unused-vars": ["error", {"args": "none"}],
     "object-curly-spacing": ["error", "always"],
-    "react/react-in-jsx-scope": "off",
-    "react/jsx-uses-vars": ["error"],
-    "react/prop-types": ["error"],
-    "react/require-default-props": ["error"],
-    "react/display-name": ["off", { "ignoreTranspilerName": true }]
+    "react/display-name": ["off", { "ignoreTranspilerName": true }],
+    "semi": ["error", "always"]
   }
 }
