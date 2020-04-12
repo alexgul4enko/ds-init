@@ -7,9 +7,12 @@ var chalk = require('chalk');
 var semver = require('semver');
 var path = require('path');
 var program = require('commander');
-var init = require('../lib/init');
+// var init = require('../lib/init');
 var requiredVersion = require('../package.json').engines.node;
 
+function init() {
+  console.log('init');
+}
 console.log(process.version);
 if(!semver.satisfies(process.version, requiredVersion)) {
   console.log(chalk.red('\nMinimum node version not met :)') + chalk.yellow('\nYou are using Node '.concat(process.version, ', Requirement: Node ').concat(requiredVersion, '.\n')));

@@ -1,6 +1,6 @@
 {
   "name": "ds-init",
-  "version": "3.0.9-beta",
+  "version": "3.0.10-beta",
   "bin": {
     "ds-init": "bin/index.js"
   },
