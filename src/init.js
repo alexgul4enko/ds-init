@@ -8,7 +8,7 @@ const readMe = require('./getReadMe')
 var rimraf = require('rimraf')
 const readline = require('readline')
 const pick = require('lodash/pick')
-
+const omit = require('lodash/omit')
 
 var prompt = inquirer.createPromptModule()
 
@@ -40,12 +40,22 @@ function hasYarn() {
 }
 
 
-function getConfigs(name) {
-  const questions = name ? allQuestions : [{
-    type: 'input',
-    name: 'name',
-    message: 'Please enter project name',
-  }, ...allQuestions]
+function getConfigs(name, folderName) {
+  const questions = ([
+    !name ? {
+      type: 'input',
+      name: 'name',
+      message: 'Please enter project name',
+    } : null,
+    !folderName ? {
+      type: 'input',
+      name: 'folderName',
+      message: 'Please enter folder name',
+      default: 'client',
+    } : null,
+    ...allQuestions,
+  ]).filter(Boolean)
+
 
   return prompt(questions)
     .then((userconfigs) => {
@@ -54,7 +64,6 @@ function getConfigs(name) {
       }
       return userconfigs
     })
-    .catch(err => console.log(err))
 }
 
 
@@ -82,7 +91,7 @@ function updatePkg(pkgPath, { name, projectType, repository }) {
         ])
       }
 
-      const { license, ...newPkg } = pkg
+      const newPkg = omit(pkg, 'license')
 
       return fs.outputFile(pkgPath, JSON.stringify(newPkg, null, 2))
         .catch(err => {
@@ -128,33 +137,37 @@ function updateEnvFile(path, { backendUrl, projectType }) {
 function init(
   rootDir,
   siteName,
-  folderName = 'client'
+  folderName
 ) {
   const useYarn = hasYarn()
   if(!useYarn) {
     throw new Error(chalk.red('Please install yarn'))
   }
-  const dest = path.resolve(rootDir, folderName)
+  let dest
   let configs = {
-    name: 'website',
-  }
-  if(fs.existsSync(dest)) {
-    throw new Error(chalk.red(`Directory already exists at ${dest} !`))
+    name: siteName,
+    folderName,
   }
 
-  getConfigs(siteName)
+
+  getConfigs(siteName, folderName)
     .then(userconfigs => {
       configs = { ...configs, ...userconfigs }
 
+      dest = path.resolve(rootDir, configs.folderName)
+      if(fs.existsSync(dest)) {
+        throw new Error(chalk.red(`Directory already exists at ${dest} !`))
+      }
+
       console.log()
-      console.log(chalk.cyan('Creating new FE project ...'))
+      console.log(chalk.cyan('Creating new project ...'))
       console.log()
       console.log(chalk.cyan('Cloning git repository'))
       if(shell.exec(`git clone --recursive https://github.com/django-stars/frontend-skeleton ${dest}`, { silent: true }).code !== 0) {
         throw new Error(chalk.red(`Cloning git repo failed!`))
       }
 
-      shell.exec(`cd ./${folderName} && git fetch origin && git checkout next-generation`)
+      shell.exec(`cd ./${configs.folderName} && git fetch origin && git checkout next-generation`)
 
       console.log(chalk.cyan('Cloning git repository finished'))
       return updatePkg(path.join(dest, 'package.json'), configs)
@@ -181,7 +194,7 @@ function init(
       }
 
       try {
-        shell.exec(`cd ./${folderName} && yarn`)
+        shell.exec(`cd ./${configs.folderName} && yarn`)
       } catch (err) {
         console.log(chalk.red('Installation failed'))
         throw err

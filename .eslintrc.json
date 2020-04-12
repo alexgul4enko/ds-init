@@ -1,7 +1,6 @@
 {
   "extends": [
-    "standard",
-    "plugin:react/recommended"
+    "standard"
   ],
   "parser": "babel-eslint",
   "env": {
@@ -17,15 +16,6 @@
       "jsx": true,
       "modules": true,
       "globalReturn": true
-    }
-  },
-  "plugins": [
-    "react"
-  ],
-  "settings": {
-    "react": {
-      "version": "16.2",
-      "createClass": "createClass"
     }
   },
   "rules": {
@@ -44,8 +34,6 @@
     "prefer-promise-reject-errors": ["off"],
     "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 0, "maxBOF": 0 }],
     "no-unused-vars": ["error", {"args": "none"}],
-    "object-curly-spacing": ["error", "always"],
-    "react/display-name": ["off", { "ignoreTranspilerName": true }],
-    "semi": ["error", "always"]
+    "object-curly-spacing": ["error", "always"]
   }
 }
